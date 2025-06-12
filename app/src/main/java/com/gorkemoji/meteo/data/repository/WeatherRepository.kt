@@ -1,0 +1,26 @@
+package com.gorkemoji.meteo.data.repository
+
+import com.gorkemoji.meteo.data.model.WeatherResponse
+import com.gorkemoji.meteo.data.network.WeatherApiService
+import retrofit2.Response
+
+class WeatherRepository(private val apiService: WeatherApiService) {
+    suspend fun getWeatherForecast(
+        city: String,
+        apiKey: String,
+        units: String,
+        lang: String
+    ): Response<WeatherResponse> {
+        return apiService.getWeatherForecast(city, apiKey, units, lang)
+    }
+
+    suspend fun getWeatherForecastByCoords(
+        lat: Double,
+        lon: Double,
+        apiKey: String,
+        units: String,
+        lang: String
+    ): Response<WeatherResponse> {
+        return apiService.getWeatherForecastByCoords(lat, lon, apiKey, units, lang)
+    }
+}
