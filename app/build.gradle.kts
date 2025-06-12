@@ -46,6 +46,10 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    implementation(libs.viewmodel)
+    implementation(libs.livedata)
+    implementation(libs.coroutines)
+
     // For Retrofit
     implementation(libs.retrofit)
     implementation(libs.gson)
