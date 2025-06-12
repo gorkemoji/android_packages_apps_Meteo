@@ -4,7 +4,7 @@ import com.gorkemoji.meteo.data.model.WeatherResponse
 import com.gorkemoji.meteo.data.network.ForecastApiService
 import retrofit2.Response
 
-class WeatherRepository(private val apiService: ForecastApiService) {
+class ForecastRepository(private val apiService: ForecastApiService) {
     suspend fun getWeatherForecast(
         city: String,
         apiKey: String,
