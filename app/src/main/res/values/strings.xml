@@ -4,4 +4,6 @@
     <string name="save">Save</string>
     <string name="enter_a_city">Enter a city</string>
     <string name="search_a_city">Search a city</string>
+    <string name="city_name">City name</string>
+    <string name="country_flag">Country flag</string>
 </resources>
