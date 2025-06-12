@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Meteo</string>
+    <string name="search">Search</string>
+    <string name="save">Save</string>
+    <string name="enter_a_city">Enter a city</string>
+    <string name="search_a_city">Search a city</string>
 </resources>
