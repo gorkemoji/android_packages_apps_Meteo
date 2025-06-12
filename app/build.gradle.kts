@@ -7,6 +7,10 @@ android {
     namespace = "com.gorkemoji.meteo"
     compileSdk = 35
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.gorkemoji.meteo"
         minSdk = 24
@@ -56,4 +60,7 @@ dependencies {
 
     // For Glide
     implementation(libs.glide)
+
+    // For country flags
+    implementation(libs.world)
 }
