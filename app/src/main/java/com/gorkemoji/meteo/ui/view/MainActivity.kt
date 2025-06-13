@@ -2,14 +2,11 @@ package com.gorkemoji.meteo.ui.view
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.blongho.country_data.World
-import com.gorkemoji.meteo.R
 import com.gorkemoji.meteo.databinding.ActivityMainBinding
 import com.gorkemoji.meteo.utils.PreferencesHelper
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
@@ -21,8 +18,19 @@ class MainActivity : AppCompatActivity() {
 
         World.init(this)
 
+        /*val currentLanguage = PreferencesHelper.get(this, "APP_LANGUAGE")
+
+        if (currentLanguage.isNullOrEmpty()) {
+            val deviceLanguage = Locale.getDefault().language
+            PreferencesHelper.save(this, "APP_LANGUAGE", deviceLanguage)
+        }*/
+
         when (PreferencesHelper.get(this, "SELECTED_CITY_NAME")) {
             null -> {
+                startActivity(Intent(this, SearchCityActivity::class.java))
+                finish()
+            }
+            "" -> {
                 startActivity(Intent(this, SearchCityActivity::class.java))
                 finish()
             }

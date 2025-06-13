@@ -2,7 +2,6 @@ package com.gorkemoji.meteo.ui.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -50,12 +49,10 @@ class SearchCityActivity : AppCompatActivity() {
         }
 
         binding.saveBtn.setOnClickListener {
-            PreferencesHelper.save(this, "SELECTED_CITY_LAT",selectedCity.lat.toString())
-            PreferencesHelper.save(this, "SELECTED_CITY_LON",selectedCity.lon.toString())
-            PreferencesHelper.save(this, "SELECTED_CITY_NAME",selectedCity.name)
-            PreferencesHelper.save(this, "SELECTED_CITY_COUNTRY",selectedCity.country)
-
-            Toast.makeText(this, "${selectedCity.name}, ${selectedCity.country} saved!", Toast.LENGTH_SHORT).show()
+            PreferencesHelper.save(this, "SELECTED_CITY_LAT", selectedCity.lat.toString())
+            PreferencesHelper.save(this, "SELECTED_CITY_LON", selectedCity.lon.toString())
+            PreferencesHelper.save(this, "SELECTED_CITY_NAME", selectedCity.name)
+            PreferencesHelper.save(this, "SELECTED_CITY_COUNTRY", selectedCity.country)
 
             startActivity(Intent(this, ForecastActivity::class.java))
             finish()

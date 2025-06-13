@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gorkemoji.meteo.data.model.WeatherItem
 import com.gorkemoji.meteo.databinding.HourlyForecastItemBinding
+import com.gorkemoji.meteo.utils.WeatherIconMatcher
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -29,8 +30,11 @@ class HourlyForecastAdapter(private var hourlyForecastList: List<WeatherItem>) :
         val hourFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
         val date = Date(hourlyForecast.dt * 1000L)
 
+        val iconCode = hourlyForecast.weather.firstOrNull()?.icon
+
+        holder.binding.hourlyWeatherIcon.setImageResource(WeatherIconMatcher.getWeatherIconResId(iconCode))
         holder.binding.hourlyTimeTxt.text = hourFormat.format(date)
-        holder.binding.hourlyTempTxt.text = "${hourlyForecast.main.temp.toInt()}°C"
+        holder.binding.hourlyTempTxt.text = "${hourlyForecast.main.temp.toInt()} °C"
     }
 
     @SuppressLint("NotifyDataSetChanged")
