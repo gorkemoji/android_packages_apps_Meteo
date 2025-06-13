@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Meteo</string>
+    <string name="search">Ara</string>
+    <string name="save">Kaydet</string>
+    <string name="enter_a_city">Bir şehir girin</string>
+    <string name="search_a_city">Bir şehir arayın</string>
+    <string name="city_name">Şehir ismi</string>
+    <string name="country_flag">Ülke bayrağı</string>
+    <string name="location_icon">Konum simgesi</string>
+    <string name="city_menu">Şehir menüsü</string>
+    <string name="updated_at">Son güncelleme</string>
+    <string name="degree">Derece</string>
+    <string name="description">Açıklama</string>
+    <string name="low">Düşük</string>
+    <string name="high">Yüksek</string>
+    <string name="feels_like">Hissedilen</string>
+    <string name="hourly_forecast">Saatlik Tahmin</string>
+    <string name="daily_forecast">Günlük Tahmin</string>
+    <string name="monday">Pazartesi</string>
+    <string name="weather_icon">Hava durumu simgesi</string>
+    <string name="tuesday">Salı</string>
+    <string name="sunny">Güneşli</string>
+    <string name="cloudy">Bulutlu</string>
+    <string name="wednesday">Çarşamba</string>
+    <string name="rainy">Yağmurlu</string>
+    <string name="thursday">Perşembe</string>
+    <string name="snowy">Karlı</string>
+    <string name="friday">Cuma</string>
+    <string name="foggy">Sisli</string>
+    <string name="hour">Saat</string>
+    <string name="today">Bugün</string>
+    <string name="tomorrow">Yarın</string>
+    <string name="saturday">Cumartesi</string>
+    <string name="sunday">Pazar</string>
+    <string name="thunderstorm">Gök gürültülü fırtına</string>
+    <string name="cold">Soğuk</string>
+    <string name="hot">Sıcak</string>
+    <string name="unknown">Bilinmeyen</string>
+    <string name="add_new_city">Yeni şehir ekle</string>
+    <string name="current_city">Mevcut şehir</string>
+</resources>

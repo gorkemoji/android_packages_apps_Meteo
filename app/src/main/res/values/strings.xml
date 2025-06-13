@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Meteo</string>
+    <string name="app_name" translatable="false">Meteo</string>
     <string name="search">Search</string>
     <string name="save">Save</string>
     <string name="enter_a_city">Enter a city</string>
@@ -17,7 +17,7 @@
     <string name="hourly_forecast">Hourly Forecast</string>
     <string name="daily_forecast">Daily Forecast</string>
     <string name="monday">Monday</string>
-    <string name="weather_icon">Weather Icon</string>
+    <string name="weather_icon">Weather icon</string>
     <string name="tuesday">Tuesday</string>
     <string name="sunny">Sunny</string>
     <string name="cloudy">Cloudy</string>
@@ -27,6 +27,15 @@
     <string name="snowy">Snowy</string>
     <string name="friday">Friday</string>
     <string name="foggy">Foggy</string>
-    <string name="clock">Clock</string>
     <string name="hour">Hour</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="thunderstorm">Thunderstorm</string>
+    <string name="cold">Cold</string>
+    <string name="hot">Hot</string>
+    <string name="unknown">Unknown</string>
+    <string name="add_new_city">Add new city</string>
+    <string name="current_city">Current city</string>
 </resources>
