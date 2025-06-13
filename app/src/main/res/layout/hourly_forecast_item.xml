@@ -8,7 +8,7 @@
     app:cardBackgroundColor="#20FFFFFF"
     style="@style/Widget.Material3.CardView.Filled">
 
-<LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -21,8 +21,8 @@
             android:layout_height="48dp"
             android:layout_marginTop="4dp"
             android:contentDescription="@string/weather_icon"
-            android:src="@drawable/ic_rainy_umbrella_24"
-            app:tint="?android:textColorPrimary" />
+            android:src="@drawable/ic_weather_day_clear_24"
+            app:tint="@color/white" />
 
         <TextView
             android:id="@+id/hourlyTimeTxt"
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="@string/hour"
-            android:textColor="?android:textColorPrimary"
+            android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -42,7 +42,7 @@
             android:layout_marginBottom="4dp"
             android:fontFamily="sans-serif-thin"
             android:text="@string/degree"
-            android:textColor="?android:textColorPrimary"
+            android:textColor="@color/white"
             android:textSize="16sp" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

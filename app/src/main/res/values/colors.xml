@@ -4,9 +4,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="card_selected">#FF604383</color>
     <color name="card_normal">#FF342547</color>
-    <color name="morning_start">#FFFFDEE9</color>
-    <color name="morning_end">#FFB5FFFC</color>
-    <color name="afternoon_start">#FFFFB75E</color>
+    <color name="morning_start">#FF8F4C7E</color>
+    <color name="morning_end">#FF59A39D</color>
+    <color name="afternoon_start">#FFD97F00</color>
     <color name="afternoon_end">#FFED8F03</color>
     <color name="evening_start">#FF2C3E50</color>
     <color name="evening_end">#FF4CA1AF</color>
