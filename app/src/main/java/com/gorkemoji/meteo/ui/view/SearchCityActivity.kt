@@ -13,7 +13,6 @@ import com.gorkemoji.meteo.data.repository.CityRepository
 import com.gorkemoji.meteo.databinding.ActivitySearchCityBinding
 import com.gorkemoji.meteo.ui.factory.SearchCityViewModelFactory
 import com.gorkemoji.meteo.ui.viewmodel.SearchCityViewModel
-import com.gorkemoji.meteo.utils.Constants.API_KEY
 import com.gorkemoji.meteo.utils.PreferencesHelper
 
 class SearchCityActivity : AppCompatActivity() {
@@ -47,7 +46,7 @@ class SearchCityActivity : AppCompatActivity() {
 
         binding.searchBtn.setOnClickListener {
             val cityName = binding.cityName.text.toString()
-            viewModel.searchCity(cityName, API_KEY)
+            viewModel.searchCity(cityName)
         }
 
         binding.saveBtn.setOnClickListener {

@@ -27,4 +27,6 @@
     <string name="snowy">Snowy</string>
     <string name="friday">Friday</string>
     <string name="foggy">Foggy</string>
+    <string name="clock">Clock</string>
+    <string name="hour">Hour</string>
 </resources>
