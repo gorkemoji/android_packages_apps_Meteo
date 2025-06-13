@@ -53,6 +53,7 @@ dependencies {
     implementation(libs.viewmodel)
     implementation(libs.livedata)
     implementation(libs.coroutines)
+    implementation(libs.swipeRefresh)
 
     // For Retrofit
     implementation(libs.retrofit)
