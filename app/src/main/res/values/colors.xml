@@ -2,6 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="card_selected">#604383</color>
-    <color name="card_normal">#342547</color>
+    <color name="card_selected">#FF604383</color>
+    <color name="card_normal">#FF342547</color>
+    <color name="morning_start">#FFFFDEE9</color>
+    <color name="morning_end">#FFB5FFFC</color>
+    <color name="afternoon_start">#FFFFB75E</color>
+    <color name="afternoon_end">#FFED8F03</color>
+    <color name="evening_start">#FF2C3E50</color>
+    <color name="evening_end">#FF4CA1AF</color>
+    <color name="night_start">#FF141E30</color>
+    <color name="night_end">#FF243B55</color>
 </resources>
