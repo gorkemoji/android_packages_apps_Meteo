@@ -33,10 +33,10 @@ class CityAdapter(
         val flagResId = World.getFlagOf(city.country)
         holder.binding.countryFlag.setImageResource(flagResId)
 
-        if (position == selectedPosition)
-            holder.binding.cardLayout.setBackgroundColor(holder.itemView.context.getColor(R.color.card_selected))
+        /*if (position == selectedPosition)
+            holder.binding.cardLayout.setBackgroundColor(holder.itemView.context.getColor(R.color.morning_end))
         else
-            holder.binding.cardLayout.setBackgroundColor(holder.itemView.context.getColor(R.color.card_normal))
+            holder.binding.cardLayout.setBackgroundColor(holder.itemView.context.getColor(R.color.card_normal))*/
 
         holder.binding.cardLayout.setOnClickListener {
             val previousPosition = selectedPosition

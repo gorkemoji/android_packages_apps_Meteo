@@ -5,8 +5,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.blongho.country_data.World
 import com.gorkemoji.meteo.databinding.ActivityMainBinding
-import com.gorkemoji.meteo.utils.PreferencesHelper
-import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
@@ -25,19 +23,7 @@ class MainActivity : AppCompatActivity() {
             PreferencesHelper.save(this, "APP_LANGUAGE", deviceLanguage)
         }*/
 
-        when (PreferencesHelper.get(this, "SELECTED_CITY_NAME")) {
-            null -> {
-                startActivity(Intent(this, SearchCityActivity::class.java))
-                finish()
-            }
-            "" -> {
-                startActivity(Intent(this, SearchCityActivity::class.java))
-                finish()
-            }
-            else -> {
-                startActivity(Intent(this, ForecastActivity::class.java))
-                finish()
-            }
-        }
+        startActivity(Intent(this, ForecastActivity::class.java))
+        finish()
     }
 }

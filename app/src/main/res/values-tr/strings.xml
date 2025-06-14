@@ -39,4 +39,8 @@
     <string name="unknown">Bilinmeyen</string>
     <string name="add_new_city">Yeni şehir ekle</string>
     <string name="current_city">Mevcut şehir</string>
+    <string name="choose_city_to_use">Meteo\'yu kullanmak için bir şehir seçin.</string>
+    <string name="forecast_fetch_failed">Tahminler çekilirken bir sorun oluştu.</string>
+    <string name="error">Hata</string>
+    <string name="city_not_found">Şehir bulunamadı.</string>
 </resources>

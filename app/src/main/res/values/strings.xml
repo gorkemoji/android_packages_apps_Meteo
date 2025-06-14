@@ -38,4 +38,8 @@
     <string name="unknown">Unknown</string>
     <string name="add_new_city">Add new city</string>
     <string name="current_city">Current city</string>
+    <string name="choose_city_to_use">Choose a city to use Meteo.</string>
+    <string name="forecast_fetch_failed">An error occurred while fetching the forecast.</string>
+    <string name="error">Error</string>
+    <string name="city_not_found">City not found.</string>
 </resources>

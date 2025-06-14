@@ -1,12 +1,12 @@
 package com.gorkemoji.meteo.ui.view
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.annotation.MenuRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
@@ -22,6 +22,7 @@ import com.gorkemoji.meteo.data.repository.ForecastRepository
 import com.gorkemoji.meteo.databinding.ActivityForecastBinding
 import com.gorkemoji.meteo.databinding.DailyForecastItemBinding
 import com.gorkemoji.meteo.ui.factory.ForecastViewModelFactory
+import com.gorkemoji.meteo.ui.view.fragment.SearchCityBottomSheetFragment
 import com.gorkemoji.meteo.ui.viewmodel.ForecastViewModel
 import com.gorkemoji.meteo.utils.PreferencesHelper
 import com.gorkemoji.meteo.utils.WeatherBackgroundHelper.getGradientForWeather
@@ -38,6 +39,14 @@ class ForecastActivity : AppCompatActivity() {
     private lateinit var binding: ActivityForecastBinding
     //private lateinit var appLanguage: String
 
+    companion object {
+        const val REQUEST_KEY_CITY_SELECTED = "city_selected_request_key"
+        const val BUNDLE_KEY_CITY_NAME = "city_name_bundle_key"
+        const val BUNDLE_KEY_COUNTRY_CODE = "country_code_bundle_key"
+        const val BUNDLE_KEY_LAT = "lat_bundle_key"
+        const val BUNDLE_KEY_LON = "lon_bundle_key"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityForecastBinding.inflate(layoutInflater)
@@ -45,18 +54,35 @@ class ForecastActivity : AppCompatActivity() {
 
         //appLanguage = PreferencesHelper.get(this, "APP_LANGUAGE").toString()
 
-        binding.dropdownIcon.setOnClickListener { showCitySelectionPopup(it, R.menu.choose_city_popup_menu) }
-
         setupViewModel()
         setupRecyclerView()
         setupDailyCard()
         setupSwipeRefresh()
         observeViewModel()
+        setupFragmentResultListener()
 
+        checkAndLoadCityData()
+    }
+
+    private fun checkAndLoadCityData() {
+        val selectedCityName = PreferencesHelper.get(this, "SELECTED_CITY_NAME")
         val selectedCityLat = PreferencesHelper.get(this, "SELECTED_CITY_LAT")
         val selectedCityLon = PreferencesHelper.get(this, "SELECTED_CITY_LON")
 
-        loadWeatherData(selectedCityLat?.toDouble() ?: 0.0, selectedCityLon?.toDouble() ?: 0.0)
+        val hasValidCity = !selectedCityName.isNullOrBlank() &&
+                !selectedCityLat.isNullOrBlank() && selectedCityLat.toDoubleOrNull() != 0.0 &&
+                !selectedCityLon.isNullOrBlank() && selectedCityLon.toDoubleOrNull() != 0.0
+
+        if (hasValidCity) {
+            if (selectedCityLat != null) if (selectedCityLon != null)
+                loadWeatherData(selectedCityLat.toDouble(), selectedCityLon.toDouble())
+
+            binding.dropdownIcon.visibility = View.VISIBLE
+            binding.dropdownIcon.setOnClickListener { showCitySelectionPopup(it, R.menu.choose_city_popup_menu) }
+        } else {
+            binding.dropdownIcon.visibility = View.INVISIBLE
+            showSearchCityBottomSheet()
+        }
     }
 
     private fun setupViewModel() {
@@ -84,7 +110,14 @@ class ForecastActivity : AppCompatActivity() {
             val selectedCityLat = PreferencesHelper.get(this, "SELECTED_CITY_LAT")
             val selectedCityLon = PreferencesHelper.get(this, "SELECTED_CITY_LON")
 
-            loadWeatherData(selectedCityLat?.toDouble() ?: 0.0, selectedCityLon?.toDouble() ?: 0.0)
+            if (!selectedCityLat.isNullOrBlank() && !selectedCityLon.isNullOrBlank()
+                && selectedCityLat.toDoubleOrNull() != 0.0 && selectedCityLon.toDoubleOrNull() != 0.0) {
+                loadWeatherData(selectedCityLat.toDouble(), selectedCityLon.toDouble())
+            } else {
+                binding.swipeRefreshLayout.isRefreshing = false
+                showSearchCityBottomSheet()
+                Toast.makeText(this, getString(R.string.choose_city_to_use), Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -110,7 +143,39 @@ class ForecastActivity : AppCompatActivity() {
 
             binding.currentWeatherIcon.setImageResource(iconResId)
             binding.root.background = getGradientForWeather(this, iconCode)
-        } catch (e: Exception) { e.printStackTrace() }
+
+            binding.dropdownIcon.visibility = View.VISIBLE
+            binding.dropdownIcon.setOnClickListener { showCitySelectionPopup(it, R.menu.choose_city_popup_menu) }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(this, getString(R.string.error) + ": " + e.message, Toast.LENGTH_LONG).show()
+            binding.dropdownIcon.visibility = View.INVISIBLE
+        }
+    }
+
+    private fun showSearchCityBottomSheet() {
+        val bottomSheetFragment = SearchCityBottomSheetFragment()
+        bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
+    }
+
+    private fun setupFragmentResultListener() {
+        supportFragmentManager.setFragmentResultListener(REQUEST_KEY_CITY_SELECTED, this) { _, bundle ->
+            val cityName = bundle.getString(BUNDLE_KEY_CITY_NAME)
+            val countryCode = bundle.getString(BUNDLE_KEY_COUNTRY_CODE)
+            val lat = bundle.getDouble(BUNDLE_KEY_LAT)
+            val lon = bundle.getDouble(BUNDLE_KEY_LON)
+
+            if (!cityName.isNullOrBlank() && !countryCode.isNullOrBlank() && lat != 0.0 && lon != 0.0) {
+                PreferencesHelper.save(this, "SELECTED_CITY_NAME", cityName)
+                PreferencesHelper.save(this, "SELECTED_CITY_COUNTRY", countryCode)
+                PreferencesHelper.save(this, "SELECTED_CITY_LAT", lat.toString())
+                PreferencesHelper.save(this, "SELECTED_CITY_LON", lon.toString())
+                loadWeatherData(lat, lon)
+
+                binding.dropdownIcon.visibility = View.VISIBLE
+                binding.dropdownIcon.setOnClickListener { showCitySelectionPopup(it, R.menu.choose_city_popup_menu) }
+            } else Toast.makeText(this, getString(R.string.choose_city_to_use), Toast.LENGTH_LONG).show()
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -221,9 +286,8 @@ class ForecastActivity : AppCompatActivity() {
         forecastList.forEach { forecast ->
             val forecastDate = Date(forecast.dt * 1000L)
             val dateKey = sdfDate.format(forecastDate)
-            if (desiredDates.contains(dateKey)) {
+            if (desiredDates.contains(dateKey))
                 dailyMap.getOrPut(dateKey) { mutableListOf() }.add(forecast)
-            }
         }
 
         val resultList = mutableListOf<DailyForecast>()
@@ -282,12 +346,7 @@ class ForecastActivity : AppCompatActivity() {
             when (menuItem.itemId) {
                 R.id.currentCity -> true
                 R.id.addNewCity -> {
-                    PreferencesHelper.save(this, "SELECTED_CITY_LAT", "")
-                    PreferencesHelper.save(this, "SELECTED_CITY_LON", "")
-                    PreferencesHelper.save(this, "SELECTED_CITY_NAME", "")
-                    PreferencesHelper.save(this, "SELECTED_CITY_COUNTRY", "")
-                    val intent = Intent(this, SearchCityActivity::class.java)
-                    startActivity(intent)
+                    showSearchCityBottomSheet()
                     true
                 }
                 else -> false
