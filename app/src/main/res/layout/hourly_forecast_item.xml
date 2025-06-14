@@ -29,10 +29,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif"
             android:text="@string/hour"
             android:textColor="@color/white"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/hourlyTempTxt"
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="4dp"
-            android:fontFamily="sans-serif-thin"
+            android:fontFamily="sans-serif-light"
             android:text="@string/degree"
             android:textColor="@color/white"
             android:textSize="16sp" />
