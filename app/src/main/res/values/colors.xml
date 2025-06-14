@@ -12,4 +12,22 @@
     <color name="evening_end">#FF4CA1AF</color>
     <color name="night_start">#FF141E30</color>
     <color name="night_end">#FF243B55</color>
+    <color name="sunny_start">#FF56CCF2</color>
+    <color name="sunny_end">#FF2F80ED</color>
+    <color name="clear_night_start">#FF0F2027</color>
+    <color name="clear_night_end">#FF2C5364</color>
+    <color name="few_clouds_start">#FF83A4D4</color>
+    <color name="few_clouds_end">#FFB6FBFF</color>
+    <color name="cloudy_start">#FFBDC3C7</color>
+    <color name="cloudy_end">#FF2C3E50</color>
+    <color name="rainy_start">#FF3A6073</color>
+    <color name="rainy_end">#FF16222A</color>
+    <color name="storm_start">#FF141E30</color>
+    <color name="storm_end">#FF243B55</color>
+    <color name="snow_start">#FFE0EAFC</color>
+    <color name="snow_end">#FFCFDEF3</color>
+    <color name="foggy_start">#FF757F9A</color>
+    <color name="foggy_end">#FFD7DDE8</color>
+    <color name="default_start">#FF2193B0</color>
+    <color name="default_end">#FF6DD5ED</color>
 </resources>

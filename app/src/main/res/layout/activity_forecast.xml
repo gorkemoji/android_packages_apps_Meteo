@@ -31,7 +31,7 @@
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="4dp"
+                    android:layout_margin="4dp"
                     android:contentDescription="@string/location_icon"
                     android:src="@drawable/ic_location_pin_24"
                     app:tint="@color/white" />
@@ -50,7 +50,7 @@
                     android:id="@+id/dropdownIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_margin="4dp"
                     android:layout_gravity="center_vertical"
                     android:contentDescription="@string/city_menu"
                     android:src="@drawable/ic_arrow_drop_down_24"
@@ -70,18 +70,29 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cityHeaderGroup" />
 
+            <ImageView
+                android:id="@+id/currentWeatherIcon"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="24dp"
+                android:contentDescription="@string/location_icon"
+                android:src="@drawable/ic_weather_day_clear_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lastUpdatedTxt" />
+
             <TextView
                 android:id="@+id/currentTempTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="sans-serif-light"
                 android:text="@string/degree"
                 android:textColor="@color/white"
-                android:textSize="64sp"
+                android:textSize="48sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lastUpdatedTxt" />
+                app:layout_constraintTop_toBottomOf="@+id/currentWeatherIcon" />
 
             <TextView
                 android:id="@+id/descriptionTxt"
@@ -91,7 +102,7 @@
                 android:fontFamily="sans-serif-light"
                 android:text="@string/description"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/currentTempTxt" />
