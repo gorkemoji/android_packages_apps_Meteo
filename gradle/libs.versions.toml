@@ -15,6 +15,7 @@ lifecycleKtx = "2.9.1"
 coroutines = "1.7.3"
 world = "1.5.3"
 swipeRefresh = "1.1.0"
+fragmentKtx = "1.8.8"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -33,6 +34,7 @@ livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", vers
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 world = { module = "com.github.blongho:worldCountryData", version.ref = "world" }
 swipeRefresh = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swipeRefresh" }
+androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
