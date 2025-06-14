@@ -5,12 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.MenuRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gorkemoji.meteo.R
@@ -55,6 +59,16 @@ class ForecastActivity : AppCompatActivity() {
 
         binding = ActivityForecastBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.mainContentLayout) { view, insets ->
+            val systemBarsInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.updatePadding(top = systemBarsInsets.top)
+            val params = binding.cityHeaderGroup.layoutParams as ViewGroup.MarginLayoutParams
+            params.topMargin = systemBarsInsets.top + (8 * resources.displayMetrics.density).toInt()
+            binding.cityHeaderGroup.layoutParams = params
+
+            insets
+        }
 
         appLanguage = PreferencesHelper.get(this, "APP_LANGUAGE").toString()
 
