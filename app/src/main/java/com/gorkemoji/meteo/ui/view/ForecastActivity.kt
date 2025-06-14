@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.annotation.MenuRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.view.WindowCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gorkemoji.meteo.R
@@ -37,7 +38,7 @@ class ForecastActivity : AppCompatActivity() {
     private lateinit var hourlyAdapter: HourlyForecastAdapter
     private lateinit var dailyCardBinding: DailyForecastItemBinding
     private lateinit var binding: ActivityForecastBinding
-    //private lateinit var appLanguage: String
+    private lateinit var appLanguage: String
 
     companion object {
         const val REQUEST_KEY_CITY_SELECTED = "city_selected_request_key"
@@ -49,10 +50,13 @@ class ForecastActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         binding = ActivityForecastBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //appLanguage = PreferencesHelper.get(this, "APP_LANGUAGE").toString()
+        appLanguage = PreferencesHelper.get(this, "APP_LANGUAGE").toString()
 
         setupViewModel()
         setupRecyclerView()
@@ -122,7 +126,7 @@ class ForecastActivity : AppCompatActivity() {
     }
 
     private fun loadWeatherData(latitude: Double, longitude: Double) {
-        viewModel.fetchWeatherForecastByCoords(latitude, longitude, "metric", Locale.getDefault().toString())
+        viewModel.fetchWeatherForecastByCoords(latitude, longitude, "metric", appLanguage)
     }
 
     private fun observeViewModel() {
@@ -182,7 +186,7 @@ class ForecastActivity : AppCompatActivity() {
     private fun updateCurrentWeatherInfo(weatherResponse: WeatherResponse) {
         binding.cityNameTxt.text = weatherResponse.city.name
 
-        val currentTime = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
+        val currentTime = SimpleDateFormat("HH:mm", Locale(appLanguage)).format(Date())
         binding.lastUpdatedTxt.text = getString(R.string.updated_at) + " $currentTime"
 
         val currentWeather = weatherResponse.list.firstOrNull()
@@ -212,7 +216,7 @@ class ForecastActivity : AppCompatActivity() {
 
             val description = weather.weather.firstOrNull()?.description
             binding.descriptionTxt.text = description?.replaceFirstChar { char ->
-                if (char.isLowerCase()) char.titlecase(Locale.getDefault()) else char.toString()
+                if (char.isLowerCase()) char.titlecase(Locale(appLanguage)) else char.toString()
             } ?: getString(R.string.description)
 
             binding.lowHighTxt.text = getString(R.string.low) + ": " + (overallMinTempToday?.toString() ?: "-") + " °C / " + getString(R.string.high) + ": " + (overallMaxTempToday?.toString() ?: "-") + " °C"
@@ -264,8 +268,8 @@ class ForecastActivity : AppCompatActivity() {
 
     private fun processDailyForecastsForStaticCard(forecastList: List<WeatherItem>): List<DailyForecast> {
         val dailyMap = mutableMapOf<String, MutableList<WeatherItem>>()
-        val sdfDay = SimpleDateFormat("EEEE", Locale.getDefault())
-        val sdfDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val sdfDay = SimpleDateFormat("EEEE", Locale(appLanguage))
+        val sdfDate = SimpleDateFormat("yyyy-MM-dd", Locale(appLanguage))
 
         val todayCalendar = Calendar.getInstance().apply {
             set(Calendar.HOUR_OF_DAY, 0)
@@ -304,7 +308,7 @@ class ForecastActivity : AppCompatActivity() {
                     0 -> getString(R.string.tomorrow)
                     else -> currentDayAsDate?.let {
                         sdfDay.format(it).replaceFirstChar { char ->
-                            if (char.isLowerCase()) char.titlecase(Locale.getDefault()) else char.toString()
+                            if (char.isLowerCase()) char.titlecase(Locale(appLanguage)) else char.toString()
                         }
                     } ?: getString(R.string.unknown)
                 }
@@ -314,7 +318,7 @@ class ForecastActivity : AppCompatActivity() {
                         date = dayName,
                         icon = representativeForecast.weather.firstOrNull()?.icon ?: "01d",
                         description = representativeForecast.weather.firstOrNull()?.description?.replaceFirstChar { char ->
-                            if (char.isLowerCase()) char.titlecase(Locale.getDefault()) else char.toString()
+                            if (char.isLowerCase()) char.titlecase(Locale(appLanguage)) else char.toString()
                         } ?: getString(R.string.description),
                         minTemp = minTemp,
                         maxTemp = maxTemp

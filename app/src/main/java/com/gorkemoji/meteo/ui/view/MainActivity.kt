@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.blongho.country_data.World
 import com.gorkemoji.meteo.databinding.ActivityMainBinding
+import com.gorkemoji.meteo.utils.PreferencesHelper
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
@@ -16,12 +18,12 @@ class MainActivity : AppCompatActivity() {
 
         World.init(this)
 
-        /*val currentLanguage = PreferencesHelper.get(this, "APP_LANGUAGE")
+        val currentLanguage = PreferencesHelper.get(this, "APP_LANGUAGE")
 
         if (currentLanguage.isNullOrEmpty()) {
             val deviceLanguage = Locale.getDefault().language
             PreferencesHelper.save(this, "APP_LANGUAGE", deviceLanguage)
-        }*/
+        }
 
         startActivity(Intent(this, ForecastActivity::class.java))
         finish()
