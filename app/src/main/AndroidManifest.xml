@@ -18,9 +18,6 @@
             android:name=".ui.view.ForecastActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.view.SearchCityActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.view.MainActivity"
             android:exported="true">
             <intent-filter>
