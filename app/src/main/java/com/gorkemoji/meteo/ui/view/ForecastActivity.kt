@@ -62,7 +62,12 @@ class ForecastActivity : AppCompatActivity() {
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.mainContentLayout) { view, insets ->
             val systemBarsInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            view.updatePadding(top = systemBarsInsets.top)
+            view.updatePadding(
+                bottom = systemBarsInsets.bottom,
+                left = systemBarsInsets.left,
+                right = systemBarsInsets.right
+                //top = systemBarsInsets.top
+            )
             val params = binding.cityHeaderGroup.layoutParams as ViewGroup.MarginLayoutParams
             params.topMargin = systemBarsInsets.top + (8 * resources.displayMetrics.density).toInt()
             binding.cityHeaderGroup.layoutParams = params
@@ -226,15 +231,15 @@ class ForecastActivity : AppCompatActivity() {
         val overallMaxTempToday = todayForecasts.maxOfOrNull { it.main.tempMax }?.toInt()
 
         currentWeather?.let { weather ->
-            binding.currentTempTxt.text = weather.main.temp.toInt().toString() + " °C"
+            binding.currentTempTxt.text = weather.main.temp.toInt().toString() + " °"
 
             val description = weather.weather.firstOrNull()?.description
             binding.descriptionTxt.text = description?.replaceFirstChar { char ->
                 if (char.isLowerCase()) char.titlecase(Locale(appLanguage)) else char.toString()
             } ?: getString(R.string.description)
 
-            binding.lowHighTxt.text = getString(R.string.low) + ": " + (overallMinTempToday?.toString() ?: "-") + " °C / " + getString(R.string.high) + ": " + (overallMaxTempToday?.toString() ?: "-") + " °C"
-            binding.feelsLikeTxt.text = getString(R.string.feels_like) + ": " + weather.main.feelsLike.toInt().toString() + " °C"
+            binding.lowHighTxt.text = getString(R.string.low).first() + ": " + (overallMinTempToday?.toString() ?: "-") + " ° / " + getString(R.string.high).first() + ": " + (overallMaxTempToday?.toString() ?: "-") + " °"
+            binding.feelsLikeTxt.text = getString(R.string.feels_like) + ": " + weather.main.feelsLike.toInt().toString() + " °"
         }
     }
 

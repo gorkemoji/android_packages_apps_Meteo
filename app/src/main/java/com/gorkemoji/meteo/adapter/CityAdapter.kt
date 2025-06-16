@@ -47,6 +47,7 @@ class CityAdapter(
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateList(newList: List<GeocodingResponse>) {
         cityList = newList
         notifyDataSetChanged()
