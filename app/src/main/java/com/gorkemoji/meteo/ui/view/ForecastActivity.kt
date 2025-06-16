@@ -231,15 +231,15 @@ class ForecastActivity : AppCompatActivity() {
         val overallMaxTempToday = todayForecasts.maxOfOrNull { it.main.tempMax }?.toInt()
 
         currentWeather?.let { weather ->
-            binding.currentTempTxt.text = weather.main.temp.toInt().toString() + " °"
+            binding.currentTempTxt.text = weather.main.temp.toInt().toString() + "°"
 
             val description = weather.weather.firstOrNull()?.description
             binding.descriptionTxt.text = description?.replaceFirstChar { char ->
                 if (char.isLowerCase()) char.titlecase(Locale(appLanguage)) else char.toString()
             } ?: getString(R.string.description)
 
-            binding.lowHighTxt.text = getString(R.string.low).first() + ": " + (overallMinTempToday?.toString() ?: "-") + " ° / " + getString(R.string.high).first() + ": " + (overallMaxTempToday?.toString() ?: "-") + " °"
-            binding.feelsLikeTxt.text = getString(R.string.feels_like) + ": " + weather.main.feelsLike.toInt().toString() + " °"
+            binding.lowHighTxt.text = getString(R.string.low).first() + ": " + (overallMinTempToday?.toString() ?: "-") + "° / " + getString(R.string.high).first() + ": " + (overallMaxTempToday?.toString() ?: "-") + "°"
+            binding.feelsLikeTxt.text = getString(R.string.feels_like) + ": " + weather.main.feelsLike.toInt().toString() + "°"
         }
     }
 

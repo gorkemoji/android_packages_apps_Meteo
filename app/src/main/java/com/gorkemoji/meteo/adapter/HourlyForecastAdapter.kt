@@ -34,7 +34,7 @@ class HourlyForecastAdapter(private var hourlyForecastList: List<WeatherItem>) :
 
         holder.binding.hourlyWeatherIcon.setImageResource(WeatherIconMatcher.getWeatherIconResId(iconCode))
         holder.binding.hourlyTimeTxt.text = hourFormat.format(date)
-        holder.binding.hourlyTempTxt.text = "${hourlyForecast.main.temp.toInt()} °"
+        holder.binding.hourlyTempTxt.text = "${hourlyForecast.main.temp.toInt()}°"
     }
 
     @SuppressLint("NotifyDataSetChanged")

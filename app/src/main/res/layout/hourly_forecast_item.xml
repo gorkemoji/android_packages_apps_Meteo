@@ -17,8 +17,8 @@
 
         <ImageView
             android:id="@+id/hourlyWeatherIcon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:layout_marginTop="4dp"
             android:contentDescription="@string/weather_icon"
             android:src="@drawable/ic_weather_day_clear_24"
@@ -29,10 +29,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:fontFamily="sans-serif"
             android:text="@string/hour"
             android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/hourlyTempTxt"
@@ -43,6 +42,6 @@
             android:fontFamily="sans-serif-light"
             android:text="@string/degree"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
