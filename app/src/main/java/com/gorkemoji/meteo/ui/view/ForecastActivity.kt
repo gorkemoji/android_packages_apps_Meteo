@@ -28,6 +28,7 @@ import com.gorkemoji.meteo.databinding.ActivityForecastBinding
 import com.gorkemoji.meteo.databinding.DailyForecastItemBinding
 import com.gorkemoji.meteo.ui.factory.ForecastViewModelFactory
 import com.gorkemoji.meteo.ui.view.fragment.SearchCityBottomSheetFragment
+import com.gorkemoji.meteo.ui.view.fragment.SettingsBottomSheetFragment
 import com.gorkemoji.meteo.ui.viewmodel.ForecastViewModel
 import com.gorkemoji.meteo.utils.PreferencesHelper
 import com.gorkemoji.meteo.utils.WeatherBackgroundHelper.getGradientForWeather
@@ -42,6 +43,8 @@ class ForecastActivity : AppCompatActivity() {
     private lateinit var hourlyAdapter: HourlyForecastAdapter
     private lateinit var dailyCardBinding: DailyForecastItemBinding
     private lateinit var binding: ActivityForecastBinding
+    private lateinit var apiKey: String
+    private lateinit var metric: String
     private lateinit var appLanguage: String
 
     companion object {
@@ -76,6 +79,10 @@ class ForecastActivity : AppCompatActivity() {
         }
 
         appLanguage = PreferencesHelper.get(this, "APP_LANGUAGE").toString()
+        apiKey = PreferencesHelper.get(this, "API_KEY").toString()
+        metric = PreferencesHelper.get(this, "METRIC_TYPE").toString()
+
+        binding.settingsBtn.setOnClickListener { showSettingsBottomSheet() }
 
         setupViewModel()
         setupRecyclerView()
@@ -145,7 +152,7 @@ class ForecastActivity : AppCompatActivity() {
     }
 
     private fun loadWeatherData(latitude: Double, longitude: Double) {
-        viewModel.fetchWeatherForecastByCoords(latitude, longitude, "metric", appLanguage)
+        viewModel.fetchWeatherForecastByCoords(latitude, longitude, apiKey, metric, appLanguage)
     }
 
     private fun observeViewModel() {
@@ -174,6 +181,11 @@ class ForecastActivity : AppCompatActivity() {
             Toast.makeText(this, getString(R.string.error) + ": " + e.message, Toast.LENGTH_LONG).show()
             binding.dropdownIcon.visibility = View.INVISIBLE
         }
+    }
+
+    private fun showSettingsBottomSheet() {
+        val bottomSheetFragment = SettingsBottomSheetFragment()
+        bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
     }
 
     private fun showSearchCityBottomSheet() {

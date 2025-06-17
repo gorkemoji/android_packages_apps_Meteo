@@ -42,4 +42,10 @@
     <string name="forecast_fetch_failed">An error occurred while fetching the forecast.</string>
     <string name="error">Error</string>
     <string name="city_not_found">City not found.</string>
+    <string name="settings_icon">Settings icon</string>
+    <string name="enter_an_api_key">Enter an API Key</string>
+    <string name="celcius" translatable="false">Celcius</string>
+    <string name="fahrenheit" translatable="false">Fahrenheit</string>
+    <string name="kelvin" translatable="false">Kelvin</string>
+    <string name="restart_for_effects">Please restart the app to see effects.</string>
 </resources>

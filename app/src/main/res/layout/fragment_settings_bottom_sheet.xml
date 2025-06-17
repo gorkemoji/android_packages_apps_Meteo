@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/cityLayout"
+        android:id="@+id/apiKeyLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,37 +29,45 @@
         app:layout_constraintTop_toBottomOf="@id/bottomSheetDragHandle">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/cityName"
+            android:id="@+id/apiKey"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/search_a_city"
+            android:hint="@string/enter_an_api_key"
             android:text="" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvResults"
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroup"
         android:layout_width="0dp"
-        android:layout_height="125dp"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cityLayout"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/searchBtn"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/search"
-        app:icon="@drawable/ic_search_24"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rvResults"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@id/apiKeyLayout"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/metricCelciusChip"
+            style="@style/Widget.Material3.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/celcius" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/metricFahrenheitChip"
+            style="@style/Widget.Material3.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fahrenheit" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/metricKelvinChip"
+            style="@style/Widget.Material3.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/kelvin" />
+    </com.google.android.material.chip.ChipGroup>
 
     <Button
         android:id="@+id/saveBtn"
@@ -73,6 +81,6 @@
         app:icon="@drawable/ic_save_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rvResults"
+        app:layout_constraintTop_toBottomOf="@id/chipGroup"
         app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,7 +20,7 @@ class SearchCityViewModel(private val repository: CityRepository) : ViewModel() 
         _errorMessage.value = null
         viewModelScope.launch {
             try {
-                val result = repository.searchCity(cityName, Constants.API_KEY)
+                val result = repository.searchCity(cityName, Constants.DEFAULT_API_KEY)
                 _cities.postValue(result ?: emptyList())
                 if (result.isNullOrEmpty())
                     _errorMessage.postValue("Error")
